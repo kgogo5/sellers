@@ -9,7 +9,7 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
-} from "@material-ui/core";
+} from "@mui/material";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 

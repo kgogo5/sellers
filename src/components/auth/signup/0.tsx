@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 import styled from "styled-components";
 import { COLOR } from "../../../commons";
 

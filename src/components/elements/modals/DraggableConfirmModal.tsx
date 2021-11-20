@@ -9,7 +9,7 @@ import {
   Paper,
   makeStyles,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import Draggable from "react-draggable";
 
 import { Close } from "@mui/icons-material/";

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import platform from "platform";
 
 import Container from "./Container";
@@ -24,26 +24,14 @@ const _ = () => {
     <>
       <Router>
         <Container isMobile={isMobile}>
-          <Switch>
-            <Route path="/" exact>
-              <Main />
-            </Route>
-            <Route path="/about" exact>
-              <About isMobile={isMobile} />
-            </Route>
-            <Route path="/login" exact>
-              <Login isMobile={isMobile} />
-            </Route>
-            <Route path="/signup" exact>
-              <SignUp isMobile={isMobile} />
-            </Route>
-            <Route path="/findid" exact>
-              <Findid />
-            </Route>
-            <Route path="/findpassword" exact>
-              <Findpassword />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/about" element={<About isMobile={isMobile} />} />
+            <Route path="/login" element={<Login isMobile={isMobile} />} />
+            <Route path="/signup" element={<SignUp isMobile={isMobile} />} />
+            <Route path="/findid" element={<Findid />} />
+            <Route path="/findpassword" element={<Findpassword />} />
+          </Routes>
         </Container>
       </Router>
     </>

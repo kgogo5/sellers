@@ -1,5 +1,5 @@
-import { Button, Box, Typography } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+import { Button, Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { COLOR } from "../../../commons";
 
@@ -66,7 +66,7 @@ const TextBox = styled(Box)`
 `;
 
 const _ = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <LoginWrap>
@@ -89,7 +89,7 @@ const _ = () => {
                 <Buttons
                   variant="contained"
                   color="primary"
-                  onClick={() => history.push("/login")}
+                  onClick={() => navigate("/login")}
                 >
                   로그인 하러가기
                 </Buttons>

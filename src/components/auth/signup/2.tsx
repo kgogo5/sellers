@@ -9,7 +9,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-} from "@material-ui/core";
+} from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import styled from "styled-components";
 import DaumPostcode from "react-daum-postcode";

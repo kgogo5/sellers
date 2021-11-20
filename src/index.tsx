@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import RawRouter from "./components/RawRouter";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme copy";
 
 ReactDOM.render(

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import styled from "styled-components";
 import {
   Box,
@@ -7,13 +7,13 @@ import {
   List,
   ListItem,
   ListItemText,
-} from "@material-ui/core";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import { Menu, ExpandMoreIcon } from "@mui/icons-material/";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@material-ui/icons";
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+} from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, ExpandMore } from "@mui/icons-material";
 
 const navItems = {
   menuList: [
@@ -42,21 +42,6 @@ const HeaderWrap = styled(Box)`
   }
 `;
 
-const LinkList = styled(Link)`
-  padding: 1em;
-  display: block;
-  height: 100%;
-  color: #fff;
-  text-shadow: 0px 0px 4px black;
-  & + & {
-    margin-left: 1rem;
-  }
-  &:hover,
-  &:focus {
-    background: #aeaeae;
-  }
-`;
-
 const MobileMenuButton = styled(Button)`
   && {
     min-width: auto;
@@ -79,14 +64,8 @@ interface ToggleTypeInterface {
 }
 
 const _ = ({ isMobile }: Iplatform) => {
-  const history = useHistory();
-  const location = useLocation();
+  const navigate = useNavigate();
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
-
-  // useState
-  const [scrollTopAnimation, setScrollTopAnimation] = useState(
-    location.pathname === "/" ? true : false
-  );
 
   // variable
   const toggleDrawer = useCallback(
@@ -105,19 +84,11 @@ const _ = ({ isMobile }: Iplatform) => {
 
   const mobileLinkClick = useCallback(
     (address: string) => {
-      history.push(address);
+      navigate(address);
       toggleDrawer(false);
     },
-    [history, toggleDrawer]
+    [navigate, toggleDrawer]
   );
-
-  useEffect(() => {
-    if (location.pathname !== "/") {
-      setScrollTopAnimation(true);
-    } else if (location.pathname === "/") {
-      setScrollTopAnimation(false);
-    }
-  }, [location.pathname]);
 
   return (
     <>
@@ -167,7 +138,7 @@ const _ = ({ isMobile }: Iplatform) => {
                 <>
                   <Accordion>
                     <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
+                      expandIcon={<ExpandMore />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >

@@ -1,19 +1,7 @@
-import {
-  Step,
-  StepConnector,
-  StepLabel,
-  Stepper,
-  withStyles,
-} from "@material-ui/core";
+import { Step, StepLabel, Stepper } from "@mui/material";
 import { COLOR } from "../../commons";
 
 import styled from "styled-components";
-
-const SignupGeneralStepper = withStyles({
-  line: {
-    borderColor: COLOR.text,
-  },
-})(StepConnector);
 
 interface StepperInterface {
   activeStep: number;
@@ -63,13 +51,9 @@ const StepLabels = styled(StepLabel)`
 
 const _ = ({ activeStep, steps }: StepperInterface) => {
   return (
-    <StepperWrap
-      alternativeLabel
-      activeStep={activeStep}
-      connector={<SignupGeneralStepper />}
-    >
-      {steps.map((label: string, i: number) => (
-        <Step key={i}>
+    <StepperWrap alternativeLabel activeStep={activeStep}>
+      {steps.map((label: string) => (
+        <Step key={label}>
           <StepLabels>{label}</StepLabels>
         </Step>
       ))}

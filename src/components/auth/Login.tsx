@@ -8,9 +8,9 @@ import {
   FormControlLabel,
   Checkbox,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { axios, COLOR } from "../../commons";
@@ -84,7 +84,7 @@ const ErrorMessage = styled(Typography)`
 `;
 
 const _ = ({ isMobile }: ContainerInterface) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { handleSubmit } = useForm<Inputs>();
 
   const onSubmit = (data: any) => {
@@ -181,13 +181,13 @@ const _ = ({ isMobile }: ContainerInterface) => {
             />
           </FormGroup>
           <Box>
-            <Button onClick={() => history.push("/findid")}>아이디 찾기</Button>
+            <Button onClick={() => navigate("/findid")}>아이디 찾기</Button>
             <Typography component="span">|</Typography>
-            <Button onClick={() => history.push("/findpassword")}>
+            <Button onClick={() => navigate("/findpassword")}>
               비밀번호 찾기
             </Button>
             <Typography component="span">|</Typography>
-            <Button onClick={() => history.push("/signup")}>회원가입</Button>
+            <Button onClick={() => navigate("/signup")}>회원가입</Button>
           </Box>
         </BottomFunctionArea>
       </FormWrap>

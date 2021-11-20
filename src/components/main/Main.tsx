@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Typography, Box, Container } from "@material-ui/core";
+import { Typography, Box, Container } from "@mui/material";
 
 const Wrap = styled(Container)`
   margin: 0 auto;

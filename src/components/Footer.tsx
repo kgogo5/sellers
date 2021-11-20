@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import clsx from "clsx";
 

@@ -10,7 +10,7 @@ import {
   Box,
   Typography,
   IconButton,
-} from "@material-ui/core";
+} from "@mui/material";
 
 import { Close } from "@mui/icons-material/";
 

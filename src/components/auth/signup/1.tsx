@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useCallback, useState } from "react";
-import { Button, Box, TextField, Dialog, Typography } from "@material-ui/core";
+import { Button, Box, TextField, Dialog, Typography } from "@mui/material";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
 import { COLOR } from "../../../commons";

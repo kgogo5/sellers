@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Box, Container } from "@material-ui/core";
+import { Box, Container } from "@mui/material";
 
 const Wrap = styled(Container)`
   && {
