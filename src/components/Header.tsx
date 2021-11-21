@@ -14,18 +14,34 @@ import {
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, ExpandMore } from "@mui/icons-material";
+import { isEmpty } from "../commons";
 
 const navItems = {
   menuList: [
     { title: "홈", address: "/" },
-    { title: "상품관리", address: "/product" },
-    { title: "주문관리", address: "/order" },
+    {
+      title: "상품관리",
+      address: "/product",
+      sub: [
+        { title: "상품 메뉴1", address: "/product/menu1" },
+        { title: "상품 메뉴2", address: "/product/menu2" },
+        { title: "상품 메뉴3", address: "/product/menu3" },
+      ],
+    },
+    {
+      title: "주문관리",
+      address: "/order",
+      sub: [
+        { title: "주문 메뉴1", address: "/order/menu1" },
+        { title: "주문 메뉴2", address: "/order/menu2" },
+      ],
+    },
     { title: "정산관리", address: "/settlement" },
     { title: "판매자 정보", address: "/seller" },
     { title: "문의", address: "/question" },
     { title: "애널리틱스", address: "/analytics" },
     { title: "관리", address: "/setting" },
-    { title: "Login", address: "/login" },
+    { title: "로그인", address: "/login" },
   ],
 };
 
@@ -35,6 +51,7 @@ const HeaderWrap = styled(Box)`
   top: 0;
   bottom: 0;
   background: #999;
+  width: 300px;
 
   & .inner {
     padding: 1em 0.5em;
@@ -55,6 +72,18 @@ const MobileMenuButton = styled(Button)`
     }
   }
 `;
+
+const LinkList = styled(Button)`
+  && {
+    width: 100%;
+    text-align: left;
+    color: #000;
+    justify-content: initial;
+    background: #fff;
+    border-radius: 0;
+  }
+`;
+
 interface Iplatform {
   isMobile: string;
 }
@@ -135,24 +164,35 @@ const _ = ({ isMobile }: Iplatform) => {
           <Box>
             <Box component="ul">
               {navItems.menuList.map((props, i) => (
-                <>
-                  <Accordion>
-                    <AccordionSummary
-                      expandIcon={<ExpandMore />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
+                <Box key={i}>
+                  {props.sub && !isEmpty(props.sub) ? (
+                    <Accordion>
+                      <AccordionSummary expandIcon={<ExpandMore />}>
+                        <Typography>{props.title}</Typography>
+                      </AccordionSummary>
+                      {props.sub.map((a) => (
+                        <LinkList
+                          key={a.address}
+                          onClick={() => {
+                            mobileLinkClick(a.address);
+                            setMobileMenu(false);
+                          }}
+                        >
+                          {a.title}
+                        </LinkList>
+                      ))}
+                    </Accordion>
+                  ) : (
+                    <LinkList
+                      onClick={() => {
+                        mobileLinkClick(props.address);
+                        setMobileMenu(false);
+                      }}
                     >
-                      <Typography>{props.title}</Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Suspendisse malesuada lacus ex, sit amet blandit leo
-                        lobortis eget.
-                      </Typography>
-                    </AccordionDetails>
-                  </Accordion>
-                </>
+                      {props.title}
+                    </LinkList>
+                  )}
+                </Box>
               ))}
             </Box>
           </Box>
