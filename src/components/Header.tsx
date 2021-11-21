@@ -9,7 +9,6 @@ import {
   ListItemText,
   Accordion,
   AccordionSummary,
-  AccordionDetails,
   Typography,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
@@ -70,6 +69,17 @@ const MobileMenuButton = styled(Button)`
     & path {
       fill: #fff;
     }
+  }
+`;
+
+const MenuList = styled(AccordionSummary)`
+  && {
+    width: 100%;
+    text-align: left;
+    color: #000;
+    justify-content: initial;
+    background: #fff;
+    border-radius: 0;
   }
 `;
 
@@ -167,9 +177,9 @@ const _ = ({ isMobile }: Iplatform) => {
                 <Box key={i}>
                   {props.sub && !isEmpty(props.sub) ? (
                     <Accordion>
-                      <AccordionSummary expandIcon={<ExpandMore />}>
+                      <MenuList expandIcon={<ExpandMore />}>
                         <Typography>{props.title}</Typography>
-                      </AccordionSummary>
+                      </MenuList>
                       {props.sub.map((a) => (
                         <LinkList
                           key={a.address}
