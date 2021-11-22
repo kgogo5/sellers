@@ -7,7 +7,6 @@ const Wrap = styled(Container)`
   text-align: left;
   max-height: 100vh;
   overflow-y: auto;
-  text-align: center;
 
   // 스크롤바
   &::-webkit-scrollbar {
@@ -44,16 +43,32 @@ const Wrap = styled(Container)`
   }
 `;
 
+const GridBox = styled(Box)`
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(50%, auto));
+  grid-template-rows: repeat(5, minmax(50px, auto));
+  grid-auto-flow: dense; */
+`;
 const _ = () => {
   return (
     <>
       <Wrap>
-        <Box>
-          <Typography variant="h4">제목1</Typography>
-          <Typography variant="h5">제목2</Typography>
-          <Typography variant="h6">제목3</Typography>
-        </Box>
-        <Typography>본문</Typography>
+        <GridBox>
+          <Box>
+            <Typography variant="h4">제목1</Typography>
+          </Box>
+          <Box>
+            <Typography variant="h6">제목3</Typography>
+            <Typography>본문</Typography>
+          </Box>
+          <Box>
+            <Typography variant="h5">제목2</Typography>
+          </Box>
+          <Box>
+            <Typography variant="h6">제목3</Typography>
+            <Typography>본문</Typography>
+          </Box>
+        </GridBox>
       </Wrap>
     </>
   );

@@ -1,0 +1,51 @@
+{
+  "header": [
+    { "title": "Home", "address": "/" },
+    {
+      "title": "Product",
+      "sub": [
+        { "title": "Regist", "address": "/product/regist" },
+        { "title": "Inquiry", "address": "/product/inquiry" }
+      ]
+    },
+    {
+      "title": "Order",
+      "sub": [
+        { "title": "Delivery", "address": "/order/delivery" },
+        { "title": "Cancellation", "address": "/order/cancel" },
+        { "title": "Return", "address": "/order/return" },
+        { "title": "Exchange", "address": "/order/exchange" },
+        { "title": "Re Delivery", "address": "/order/redelivery" },
+        { "title": "Non Arrival", "address": "/order/nonarrival" },
+        {
+          "title": "Sales Completion",
+          "address": "/order/salescompletion"
+        },
+        { "title": "Sales Cancellation", "address": "/order/salescancel" }
+      ]
+    },
+    {
+      "title": "Settlement",
+      "address": "/settlement",
+      "sub": [
+        { "title": "Calculate Status", "address": "/order/calculate" },
+        { "title": "Remittance Completed", "address": "/order/remittance" },
+        {
+          "title": "Tax invoice receipt details",
+          "address": "/order/taxbill"
+        },
+        { "title": "VAT report details", "address": "/order/vat" },
+        {
+          "title": "Receipt of proof of deduction",
+          "address": "/order/proofofdeduction"
+        },
+        { "title": "Point gift settlement", "address": "/order/pointgift" }
+      ]
+    },
+    { "title": "Seller", "address": "/seller" },
+    { "title": "Question", "address": "/question" },
+    { "title": "Analytics", "address": "/analytics" },
+    { "title": "Setting", "address": "/setting" },
+    { "title": "Login", "address": "/login" }
+  ]
+}

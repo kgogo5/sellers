@@ -8,13 +8,7 @@ import clsx from "clsx";
 //import SimpleLogoImg from "../images/simple_logo_white.png";
 
 const FooterWrap = styled.footer`
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 0;
   text-align: center;
-  z-index: 1000;
   overflow: hidden;
 
   & .animationBox {

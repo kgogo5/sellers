@@ -5,56 +5,66 @@ import {
   Button,
   Drawer,
   List,
-  ListItem,
   ListItemText,
   Accordion,
   AccordionSummary,
   Typography,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 import { Menu, ExpandMore } from "@mui/icons-material";
 import { isEmpty } from "../commons";
+import { useTranslation } from "react-i18next";
 
-const navItems = {
-  menuList: [
-    { title: "홈", address: "/" },
-    {
-      title: "상품관리",
-      address: "/product",
-      sub: [
-        { title: "상품 메뉴1", address: "/product/menu1" },
-        { title: "상품 메뉴2", address: "/product/menu2" },
-        { title: "상품 메뉴3", address: "/product/menu3" },
-      ],
-    },
-    {
-      title: "주문관리",
-      address: "/order",
-      sub: [
-        { title: "주문 메뉴1", address: "/order/menu1" },
-        { title: "주문 메뉴2", address: "/order/menu2" },
-      ],
-    },
-    { title: "정산관리", address: "/settlement" },
-    { title: "판매자 정보", address: "/seller" },
-    { title: "문의", address: "/question" },
-    { title: "애널리틱스", address: "/analytics" },
-    { title: "관리", address: "/setting" },
-    { title: "로그인", address: "/login" },
-  ],
+const lngs = {
+  en: { nativeName: "En" },
+  ko: { nativeName: "Ko" },
 };
 
 const HeaderWrap = styled(Box)`
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
+  padding-bottom: 50px;
+  overflow-y: auto;
   background: #999;
-  width: 300px;
+  height: 100%;
+
+  // 스크롤바
+  &::-webkit-scrollbar {
+    width: 6px;
+  } /* 스크롤 바 */
+  &::-webkit-scrollbar-track {
+    background-color: "transparent";
+  } /* 스크롤 바 밑의 배경 */
+
+  &:hover {
+    // 스크롤바
+    &::-webkit-scrollbar {
+      width: 6px;
+    } /* 스크롤 바 */
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    } /* 스크롤 바 밑의 배경 */
+    &::-webkit-scrollbar-thumb {
+      background-color: #e6e6e6;
+    } /* 실질적 스크롤 바 */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #e6e6e6;
+    } /* 실질적 스크롤 바 위에 마우스를 올려다 둘 때 */
+    &::-webkit-scrollbar-thumb:active {
+      background: #e6e6e6;
+    } /* 실질적 스크롤 바를 클릭할 때 */
+    &::-webkit-scrollbar-button {
+      display: none;
+    } /* 스크롤 바 상 하단 버튼 */
+  }
 
   & .inner {
     padding: 1em 0.5em;
     background: #fff;
+  }
+`;
+
+const Inner = styled(Box)`
+  & .MuiAccordion-root {
+    box-shadow: none;
   }
 `;
 
@@ -74,6 +84,7 @@ const MobileMenuButton = styled(Button)`
 
 const MenuList = styled(AccordionSummary)`
   && {
+    padding: 12px 16px;
     width: 100%;
     text-align: left;
     color: #000;
@@ -81,16 +92,27 @@ const MenuList = styled(AccordionSummary)`
     background: #fff;
     border-radius: 0;
   }
+  & .MuiAccordionSummary-content {
+    margin: 0;
+  }
+  & .MuiAccordionSummary-content > .MuiTypography-root {
+    font-size: 14px;
+  }
 `;
 
-const LinkList = styled(Button)`
+const LinkList = styled(NavLink)`
   && {
+    padding: 12px 16px;
     width: 100%;
+    display: block;
     text-align: left;
     color: #000;
     justify-content: initial;
     background: #fff;
     border-radius: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-size: 14px;
   }
 `;
 
@@ -103,6 +125,7 @@ interface ToggleTypeInterface {
 }
 
 const _ = ({ isMobile }: Iplatform) => {
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
@@ -129,6 +152,8 @@ const _ = ({ isMobile }: Iplatform) => {
     [navigate, toggleDrawer]
   );
 
+  const menuList: any = t("header", { returnObjects: true });
+
   return (
     <>
       <HeaderWrap className={isMobile}>
@@ -153,17 +178,17 @@ const _ = ({ isMobile }: Iplatform) => {
             >
               <Box>
                 <List>
-                  {navItems.menuList.map((props, i) => (
+                  {menuList.map((props: any, i: number) => (
                     <Box component="li" key={i}>
-                      <ListItem
-                        button
+                      <NavLink
+                        to={props.address}
                         onClick={() => {
                           mobileLinkClick(props.address);
                           setMobileMenu(false);
                         }}
                       >
                         <ListItemText primary={props.title} />
-                      </ListItem>
+                      </NavLink>
                     </Box>
                   ))}
                 </List>
@@ -173,48 +198,56 @@ const _ = ({ isMobile }: Iplatform) => {
         ) : (
           <Box>
             <Box component="ul">
-              {navItems.menuList.map((props, i) => (
-                <Box key={i}>
+              {menuList.map((props: any, i: number) => (
+                <Inner key={i}>
                   {props.sub && !isEmpty(props.sub) ? (
                     <Accordion>
                       <MenuList expandIcon={<ExpandMore />}>
-                        <Typography>{props.title}</Typography>
+                        <Typography>{t(`header.${i}.title`)}</Typography>
                       </MenuList>
-                      {props.sub.map((a) => (
-                        <LinkList
-                          key={a.address}
-                          onClick={() => {
-                            mobileLinkClick(a.address);
-                            setMobileMenu(false);
-                          }}
-                        >
-                          {a.title}
-                        </LinkList>
+                      {props.sub.map((item: any) => (
+                        <>
+                          <LinkList
+                            to={props.address}
+                            key={item.address}
+                            onClick={() => {
+                              mobileLinkClick(item.address);
+                              setMobileMenu(false);
+                            }}
+                          >
+                            {item.title}
+                          </LinkList>
+                        </>
                       ))}
                     </Accordion>
                   ) : (
                     <LinkList
+                      to={props.address}
                       onClick={() => {
-                        mobileLinkClick(props.address);
+                        mobileLinkClick(t(`header.${i}.address`));
                         setMobileMenu(false);
                       }}
                     >
-                      {props.title}
+                      {t(`header.${i}.title`)}
                     </LinkList>
                   )}
-                </Box>
+                </Inner>
               ))}
             </Box>
           </Box>
-          /* <Box>
-            <Box* component="ul">
-              {navItems.menuList.map((props, i) => (
-                <Box component="li" key={i}>
-                  <LinkList to={props.address}>{props.title}</LinkList>
-                </Box>
-              ))}
-            </Box*/
         )}
+        {Object.keys(lngs).map((lng) => (
+          <Button
+            key={lng}
+            style={{
+              fontWeight: i18n.resolvedLanguage === lng ? "bold" : "normal",
+            }}
+            onClick={() => i18n.changeLanguage(lng)}
+            variant="container"
+          >
+            {lngs[lng].nativeName}
+          </Button>
+        ))}
       </HeaderWrap>
     </>
   );

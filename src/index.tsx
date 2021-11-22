@@ -1,14 +1,19 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import RawRouter from "./components/RawRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme copy";
+import "./translation/i18n";
+import "./translation/en/translation.json";
+import "./translation/ko/translation.json";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <RawRouter />
+      <Suspense fallback="...is loading">
+        <RawRouter />
+      </Suspense>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")

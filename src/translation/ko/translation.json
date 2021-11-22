@@ -1,0 +1,44 @@
+{
+  "header": [
+    { "title": "홈", "address": "/" },
+    {
+      "title": "상품관리",
+      "sub": [
+        { "title": "상품등록", "address": "/product/regist" },
+        { "title": "상품조회/수정", "address": "/product/inquiries" }
+      ]
+    },
+    {
+      "title": "주문관리",
+      "sub": [
+        { "title": "배송관리", "address": "/order/delivery" },
+        { "title": "취소관리", "address": "/order/cancel" },
+        { "title": "반품관리", "address": "/order/return" },
+        { "title": "교환처리", "address": "/order/exchange" },
+        { "title": "재배송관리", "address": "/order/redelivery" },
+        { "title": "상품미도착관리", "address": "/order/nonarrival" },
+        { "title": "판매완료내역", "address": "/order/salescompletion" },
+        { "title": "판매취소내역", "address": "/order/salescancel" }
+      ]
+    },
+    {
+      "title": "정산관리",
+      "sub": [
+        { "title": "판매/정산현황", "address": "/order/calculate" },
+        { "title": "송금완료", "address": "/order/remittance" },
+        { "title": "세금계산서 수신내역", "address": "/order/taxbill" },
+        { "title": "부가세신고내역", "address": "/order/vat" },
+        {
+          "title": "공제증빙 수신내역",
+          "address": "/order/proofofdeduction"
+        },
+        { "title": "포인트 사은품 정산", "address": "/order/pointgift" }
+      ]
+    },
+    { "title": "판매자 정보", "address": "/seller" },
+    { "title": "문의", "address": "/question" },
+    { "title": "애널리틱스", "address": "/analytics" },
+    { "title": "관리", "address": "/setting" },
+    { "title": "로그인", "address": "/login" }
+  ]
+}
