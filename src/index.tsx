@@ -4,9 +4,7 @@ import reportWebVitals from "./reportWebVitals";
 import RawRouter from "./components/RawRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme copy";
-import "./translation/i18n";
-import "./translation/en/translation.json";
-import "./translation/ko/translation.json";
+import "./i18n";
 
 ReactDOM.render(
   <React.StrictMode>

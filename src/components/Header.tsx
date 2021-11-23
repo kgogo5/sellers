@@ -16,14 +16,14 @@ import { isEmpty } from "../commons";
 import { useTranslation } from "react-i18next";
 
 const lngs = {
-  en: { nativeName: "En" },
-  ko: { nativeName: "Ko" },
+  en: { nativeName: "en" },
+  ko: { nativeName: "ko" },
 };
 
 const HeaderWrap = styled(Box)`
   padding-bottom: 50px;
   overflow-y: auto;
-  background: #999;
+  background: #fff;
   height: 100%;
 
   // 스크롤바
@@ -89,7 +89,7 @@ const MenuList = styled(AccordionSummary)`
     text-align: left;
     color: #000;
     justify-content: initial;
-    background: #fff;
+    background: inherit;
     border-radius: 0;
   }
   & .MuiAccordionSummary-content {
@@ -108,7 +108,7 @@ const LinkList = styled(NavLink)`
     text-align: left;
     color: #000;
     justify-content: initial;
-    background: #fff;
+    background: inherit;
     border-radius: 0;
     border: 0;
     box-sizing: border-box;
@@ -152,7 +152,8 @@ const _ = ({ isMobile }: Iplatform) => {
     [navigate, toggleDrawer]
   );
 
-  const menuList: any = t("header", { returnObjects: true });
+  // const menuLists: any = [];
+  const menuLists: any = t("header", { returnObjects: true });
 
   return (
     <>
@@ -178,19 +179,20 @@ const _ = ({ isMobile }: Iplatform) => {
             >
               <Box>
                 <List>
-                  {menuList.map((props: any, i: number) => (
-                    <Box component="li" key={i}>
-                      <NavLink
-                        to={props.address}
-                        onClick={() => {
-                          mobileLinkClick(props.address);
-                          setMobileMenu(false);
-                        }}
-                      >
-                        <ListItemText primary={props.title} />
-                      </NavLink>
-                    </Box>
-                  ))}
+                  {!isEmpty(menuLists) &&
+                    menuLists.map((props: any, i: number) => (
+                      <Box component="li" key={i}>
+                        <NavLink
+                          to={props.address}
+                          onClick={() => {
+                            mobileLinkClick(props.address);
+                            setMobileMenu(false);
+                          }}
+                        >
+                          <ListItemText primary={props.title} />
+                        </NavLink>
+                      </Box>
+                    ))}
                 </List>
               </Box>
             </Drawer>
@@ -198,41 +200,42 @@ const _ = ({ isMobile }: Iplatform) => {
         ) : (
           <Box>
             <Box component="ul">
-              {menuList.map((props: any, i: number) => (
-                <Inner key={i}>
-                  {props.sub && !isEmpty(props.sub) ? (
-                    <Accordion>
-                      <MenuList expandIcon={<ExpandMore />}>
-                        <Typography>{t(`header.${i}.title`)}</Typography>
-                      </MenuList>
-                      {props.sub.map((item: any) => (
-                        <>
-                          <LinkList
-                            to={props.address}
-                            key={item.address}
-                            onClick={() => {
-                              mobileLinkClick(item.address);
-                              setMobileMenu(false);
-                            }}
-                          >
-                            {item.title}
-                          </LinkList>
-                        </>
-                      ))}
-                    </Accordion>
-                  ) : (
-                    <LinkList
-                      to={props.address}
-                      onClick={() => {
-                        mobileLinkClick(t(`header.${i}.address`));
-                        setMobileMenu(false);
-                      }}
-                    >
-                      {t(`header.${i}.title`)}
-                    </LinkList>
-                  )}
-                </Inner>
-              ))}
+              {!isEmpty(menuLists) &&
+                menuLists.map((props: any, i: number) => (
+                  <Inner key={i}>
+                    {props.sub && !isEmpty(props.sub) ? (
+                      <Accordion>
+                        <MenuList expandIcon={<ExpandMore />}>
+                          <Typography>{t(`header.${i}.title`)}</Typography>
+                        </MenuList>
+                        {props.sub.map((item: any) => (
+                          <>
+                            <LinkList
+                              to={item.address}
+                              key={item.address}
+                              onClick={() => {
+                                mobileLinkClick(item.address);
+                                setMobileMenu(false);
+                              }}
+                            >
+                              {item.title}
+                            </LinkList>
+                          </>
+                        ))}
+                      </Accordion>
+                    ) : (
+                      <LinkList
+                        to={props.address}
+                        onClick={() => {
+                          mobileLinkClick(t(`header.${i}.address`));
+                          setMobileMenu(false);
+                        }}
+                      >
+                        {t(`header.${i}.title`)}
+                      </LinkList>
+                    )}
+                  </Inner>
+                ))}
             </Box>
           </Box>
         )}
