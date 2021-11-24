@@ -4,10 +4,10 @@ import Axios from "axios";
 // Styled
 const COLOR = {
   text: "#fff",
-  contrastText: "#b6b6b6",
-  fill: "#34495e",
-  dark: "#2c3e50",
-  light: "#95a5a6",
+  contrastText: "#cbcbcb",
+  fill: "#8c8c8c",
+  dark: "#5c5b5b",
+  light: "#e4e4e4",
   error: "#ff6757",
 };
 

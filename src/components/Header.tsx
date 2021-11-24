@@ -14,6 +14,7 @@ import { Link, useNavigate, NavLink } from "react-router-dom";
 import { Menu, ExpandMore } from "@mui/icons-material";
 import { isEmpty } from "../commons";
 import { useTranslation } from "react-i18next";
+import { COLOR } from "../commons";
 
 const lngs = {
   en: { nativeName: "en" },
@@ -87,7 +88,7 @@ const MenuList = styled(AccordionSummary)`
     padding: 12px 16px;
     width: 100%;
     text-align: left;
-    color: #000;
+    color: ${COLOR.dark};
     justify-content: initial;
     background: inherit;
     border-radius: 0;
@@ -106,7 +107,7 @@ const LinkList = styled(NavLink)`
     width: 100%;
     display: block;
     text-align: left;
-    color: #000;
+    color: ${COLOR.dark};
     justify-content: initial;
     background: inherit;
     border-radius: 0;
